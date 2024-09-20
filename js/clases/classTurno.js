@@ -1,8 +1,8 @@
 export default class Turno {
-    #apellidos
     #nombre
+    #apellidos
     #dni
-    #nacimiento
+    #edad
     #tel
     #mail
     #especialidad
@@ -14,11 +14,11 @@ export default class Turno {
     #numAfiliado
     #historial
     #contacto
-    constructor({apellidos, nombre, dni, nacimiento, tel, mail="No especifica", especialidad="No especifica", medico="No especifica", fecha, hora, motivo="No especifica", cobertura, numAfiliado, historial="No especifica", contacto}) {
-        this.#apellidos = apellidos;
+    constructor(nombre, apellidos, dni, edad, tel, mail="No especifica", especialidad="No especifica", medico="No especifica", fecha, hora, motivo="No especifica", cobertura, numAfiliado="No especifica", historial="No especifica", contacto) {
         this.#nombre = nombre;
+        this.#apellidos = apellidos;
         this.#dni = dni;
-        this.#nacimiento = nacimiento;
+        this.#edad = edad;
         this.#tel = tel;
         this.#mail = mail;
         this.#especialidad = especialidad;
@@ -32,69 +32,71 @@ export default class Turno {
         this.#contacto = contacto;
     }
     get apellidos() {
-        return this._apellidos;
+        return this.#apellidos;
     }
 
     set apellidos(value) {
-        if (typeof value !== 'string' || value.trim() === '') {
+        if (typeof value !== 'string') {
             throw new Error("Apellidos debe ser un texto válido.");
         }
-        this._apellidos = value;
+        this.#apellidos = value;
     }
 
     // Nombre
     get nombre() {
-        return this._nombre;
+        return this.#nombre;
     }
 
     set nombre(value) {
-        if (typeof value !== 'string' || value.trim() === '') {
+        if (typeof value !== 'string') {
             throw new Error("Nombre debe ser un texto válido.");
         }
-        this._nombre = value;
+        this.#nombre = value;
     }
 
     // DNI
     get dni() {
-        return this._dni;
+        return this.#dni;
     }
 
     set dni(value) {
-        if (!/^\d{7,8}$/.test(value)) {
-            throw new Error("DNI debe tener entre 7 y 8 dígitos numéricos.");
+        const dniNum = Number(value);
+        if (!Number.isInteger(dniNum) || value.length < 7 || value.length > 8) {
+            alert("dni no valido")
+            throw new Error("DNI debe ser un número de entre 7 y 8 dígitos.");
         }
-        this._dni = value;
+        this.#dni = value;
     }
 
-    // Fecha de nacimiento
-    get nacimiento() {
-        return this._nacimiento;
+    // Fecha de edad
+    get edad() {
+        return this.#edad;
     }
 
-    set nacimiento(value) {
+    set edad(value) {
         const fecha = new Date(value);
         const hoy = new Date();
         if (isNaN(fecha) || fecha >= hoy) {
-            throw new Error("Fecha de nacimiento no válida.");
+            throw new Error("Fecha de edad no válida.");
         }
-        this._nacimiento = value;
+        this.#edad = value;
     }
 
     // Teléfono
     get tel() {
-        return this._tel;
+        return this.#tel;
     }
 
     set tel(value) {
         if (!/^\d{10,15}$/.test(value)) {
             throw new Error("El número de teléfono debe tener entre 10 y 15 dígitos.");
         }
-        this._tel = value;
+        this.#tel = value;
     }
 
     // Correo electrónico
     get mail() {
-        return this._mail;
+        return this.#mail;
     }
 
     set mail(value) {
@@ -102,30 +104,30 @@ export default class Turno {
         if (!emailRegex.test(value)) {
             throw new Error("Correo electrónico no válido.");
         }
-        this._mail = value;
+        this.#mail = value;
     }
 
     // Especialidad
     get especialidad() {
-        return this._especialidad;
+        return this.#especialidad;
     }
 
     set especialidad(value) {
-        this._especialidad = value;
+        this.#especialidad = value;
     }
 
     // Médico
     get medico() {
-        return this._medico;
+        return this.#medico;
     }
 
     set medico(value) {
-        this._medico = value;
+        this.#medico = value;
     }
 
     // Fecha
     get fecha() {
-        return this._fecha;
+        return this.#fecha;
     }
 
     set fecha(value) {
@@ -133,78 +135,92 @@ export default class Turno {
         if (isNaN(fecha)) {
             throw new Error("Fecha no válida.");
         }
-        this._fecha = value;
+        this.#fecha = value;
     }
 
     // Hora
     get hora() {
-        return this._hora;
+        return this.#hora;
     }
 
     set hora(value) {
         if (!/^\d{2}:\d{2}$/.test(value)) {
             throw new Error("La hora debe estar en formato HH:MM.");
         }
-        this._hora = value;
+        this.#hora = value;
     }
 
     // Motivo
     get motivo() {
-        return this._motivo;
+        return this.#motivo;
     }
 
     set motivo(value) {
-        if (typeof value !== 'string' || value.trim() === '') {
-            throw new Error("Motivo debe ser un texto válido.");
-        }
-        this._motivo = value;
+        this.#motivo = value;
     }
 
     // Cobertura
     get cobertura() {
-        return this._cobertura;
+        return this.#cobertura;
     }
 
     set cobertura(value) {
         if (typeof value !== 'string' || value.trim() === '') {
             throw new Error("Cobertura debe ser un texto válido.");
         }
-        this._cobertura = value;
+        this.#cobertura = value;
     }
 
     // Número de afiliado
     get numAfiliado() {
-        return this._numAfiliado;
+        return this.#numAfiliado;
     }
 
     set numAfiliado(value) {
         if (typeof value !== 'string' || value.trim() === '') {
             throw new Error("Número de afiliado debe ser un texto válido.");
         }
-        this._numAfiliado = value;
+        this.#numAfiliado = value;
     }
 
     // Historial médico
     get historial() {
-        return this._historial;
+        return this.#historial;
     }
 
     set historial(value) {
         if (typeof value !== 'string') {
             throw new Error("El historial debe ser un texto válido.");
         }
-        this._historial = value;
+        this.#historial = value;
     }
 
     // Contacto de emergencia
     get contacto() {
-        return this._contacto;
+        return this.#contacto;
     }
 
     set contacto(value) {
-        if (typeof value !== 'string' || value.trim() === '') {
-            throw new Error("Contacto de emergencia debe ser un texto válido.");
+        this.#contacto = value;
+    }
+
+    toJSON(){
+        return{
+            nombre: this.nombre,
+            apellidos: this.apellidos,
+            dni: this.dni,
+            edad: this.edad,
+            tel: this.tel,
+            mail: this.mail,
+            especialidad: this.especialidad,
+            medico: this.medico,
+            fecha: this.fecha,
+            hora: this.hora,
+            motivo: this.motivo,
+            cobertura: this.cobertura,
+            numAfiliado: this.numAfiliado,
+            historial: this.historial,
+            contacto: this.contacto
         }
-        this._contacto = value;
     }
 }

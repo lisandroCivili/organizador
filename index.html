@@ -52,16 +52,7 @@
                       <input type="text" class="form-control" id="edad" name="edad" minlength="1" maxlength="3" required>
                     </div>
               
-                    <div class="mb-3">
-                      <label for="tel" class="form-label">Teléfono de contacto</label>
-                      <input type="tel" class="form-control" id="tel" name="tel" minlength="10" maxlength="10" required>
-                    </div>
-              
-                    <div class="mb-3">
-                      <label for="mail" class="form-label">Correo electrónico</label>
-                      <input type="email" class="form-control" id="mail" name="mail" required>
-                    </div>
-
+                    
                     <h2>Preferencias de turno</h2>
                     <div class="mb-3">
                       <label for="especialidad" class="form-label">Especialidad médica</label>
@@ -112,13 +103,22 @@
                       <label for="afiliado" class="form-label">Número de afiliado</label>
                       <input type="text" class="form-control" id="afiliado" name="afiliado">
                     </div>
-              
+                    
                     <div class="mb-3">
                       <label for="historial" class="form-label">Historial médico relevante</label>
                       <textarea class="form-control" id="historial" name="historial" rows="3"></textarea>
                     </div>
 
                     <h2>Contacto</h2>
+                    <div class="mb-3">
+                      <label for="tel" class="form-label">Teléfono de contacto</label>
+                      <input type="tel" class="form-control" id="tel" name="tel" minlength="10" maxlength="10" required>
+                    </div>
+              
+                    <div class="mb-3">
+                      <label for="mail" class="form-label">Correo electrónico</label>
+                      <input type="email" class="form-control" id="mail" name="mail" required>
+                    </div>
                     <div class="mb-3">
                       <label for="contacto" class="form-label">Método de confirmación</label>
                       <select class="form-select" id="contacto" name="contacto">
@@ -128,7 +128,7 @@
                         <option value="call">Llamada</option>
                       </select>
                     </div>
-
+                    
                   <button type="submit" class="btn btn-primary">Solicitar turno</button>
                 </form>
               </div>
@@ -136,5 +136,6 @@
         </section>
       </main>
       <script type="module" src="./js/administracion/appAdm.js"></script>
+      <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

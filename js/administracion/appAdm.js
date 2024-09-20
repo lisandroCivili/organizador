@@ -35,12 +35,12 @@ apellido.addEventListener("input", () => {
   validarLargo(apellido, 3, 40);
 });
 dni.addEventListener("input", () => {
-    validarNumero(dni);
-    validarLargo(dni, 7, 8);
+  validarNumero(dni);
+  validarLargo(dni, 7, 8);
 });
 edad.addEventListener("input", () => {
-    validarNumero(edad);
-    validarLargo(dni, 1, 3);
+  validarNumero(edad);
+  validarLargo(dni, 1, 3);
 });
 afiliado.addEventListener("input", () => {
   validarNumero(afiliado);
@@ -70,7 +70,7 @@ const guardarDatos = (e) => {
       mail.value,
       especialidad.value,
       doctor.value,
-      fecha.value,
+      cambiarFormatoFecha(fecha.value),
       hora.value,
       motivo.value,
       cobertura.value,
@@ -83,6 +83,14 @@ const guardarDatos = (e) => {
     limpiarFormulario();
   }
 };
+function cambiarFormatoFecha(fecha) {
+  const partesFecha = fecha.split("-");
+  const año = partesFecha[0];
+  const mes = partesFecha[1];
+  const dia = partesFecha[2];
+  const fechaFormateada = `${dia}-${mes}-${año}`;
+  return fechaFormateada;
+}
 const limpiarFormulario = () => {
   datosTurno.reset();
 };
